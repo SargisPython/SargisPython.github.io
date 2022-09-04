@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block content%}
+<!-- Page Container -->
+{%for work in works  %}
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+        <!-- Left Column -->
+        <div class="w3-third">
+            <div class="w3-white w3-text-grey w3-card-4">
+                <div class="w3-display-container">
+                    <img src="{{work.image.url}}" style="width:100%" alt="">
+                    <div class="w3-display-bottomleft w3-container w3-text-black">
+                        <h2 style="background-color: white;">{{work.title}}</h2>
+                    </div>
+                </div>
+                <div class="w3-container">
+                    <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>{{work.profession}}
+                    </p>
+                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>{{work.country}}</p>
+                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>{{work.email}}</p>
+                    <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>{{work.phone}}</p>
+                    <hr>
+
+                    <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b>
+                    </p>
+                    <p>{{work.skills1}}</p>
+                    <div class="w3-light-grey w3-round-xlarge w3-small">
+                        <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{work.percent}}%">
+                            <div class="w3-center w3-text-white">{{work.percent}}%</div>
+                        </div>
+                    </div>
+                    <p>{{work.skills2}}</p>
+                    <div class="w3-light-grey w3-round-xlarge w3-small">
+                        <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{work.percent1}}%">
+                            <div class="w3-center w3-text-white">{{work.percent1}}%</div>
+                        </div>
+                    </div>
+                    <p>{{work.skills3}}</p>
+                    <div class="w3-light-grey w3-round-xlarge w3-small">
+                        <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:{{work.percent2}}%">
+                            <div class="w3-center w3-text-white">{{work.percent2}}%</div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b>
+                    </p>
+                    <p>{{work.lang}}</p>
+                    <div class="w3-light-grey w3-round-xlarge">
+                        <div class="w3-round-xlarge w3-teal" style="height:24px;width:{{work.ken}}%"></div>
+                    </div>
+                    <p>{{work.lang2}}</p>
+                    <div class="w3-light-grey w3-round-xlarge">
+                        <div class="w3-round-xlarge w3-teal" style="height:24px;width:{{work.ken2}}%"></div>
+                    </div>
+                    <p>{{work.lang3}}</p>
+                    <div class="w3-light-grey w3-round-xlarge">
+                        <div class="w3-round-xlarge w3-teal" style="height:24px;width:{{work.ken3}}%"></div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <br>
+        </div>
+
+
+        <!-- Right Column -->
+        <div class="w3-twothird">
+
+            <div class="w3-container w3-card w3-white w3-margin-bottom">
+                <h2 class="w3-text-grey w3-padding-16"><i
+                        class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>
+                <div class="w3-container">
+                    <p>{{work.created1}}</p>
+                    <p>{{work.work1}}</p>
+                    <hr>
+                </div>
+                <div class="w3-container">
+                    <p>{{work.created2}}</p>
+                    <p>{{work.work2}}</p>
+                    <hr>
+                </div>
+                <div class="w3-container">
+                    <p>{{work.created3}}</p>
+                    <p>{{work.work3}}</p><br>
+                </div>
+            </div>
+
+            <div class="w3-container w3-card w3-white">
+                <h2 class="w3-text-grey w3-padding-16"><i
+                        class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>{{work.Education1}}</b></h5>
+                    <p>{{work.created4}}</p>
+                    <hr>
+                </div>
+                <div class="w3-container">
+                    <h5 class="w3-opacity"><b>{{work.Education2}}</b></h5>
+                    <p>{{work.created5}}</p>
+                </div>
+            </div>
+            <!-- End Right Column -->
+        </div>
+        <!-- End Grid -->
+    </div>
+    <!-- End Page Container -->
+</div>
+{%endfor%}
+
+
+{% endblock content%}

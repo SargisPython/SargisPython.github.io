@@ -1,0 +1,94 @@
+{% load static  i18n  %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+    </style>
+</head>
+<body class="w3-light-grey">
+<ul>
+    <li style="background-color: coral;"><a href="{% url 'home' %}">{% trans 'home' %}</a></li>
+    {% if user.is_authenticated%}
+    <li style="float:right" ,><a class="active" href="{% url 'logout'%}">{% trans 'logout' %}</a></li>
+    {%else%}
+    <li style="background-color: green;"><a href="{% url 'login'%}">{% trans 'Login' %}</a></li>
+    {% endif %}
+    {% if user.is_authenticated%}
+    <li style="float:right" ,><a href=""> {{user.username}} </a></li>
+    {%endif%}
+    {% if user.is_authenticated%}
+    <li><a href="{% url 'add_WorkExperience'%}">{% trans 'Add Work Experience' %}</a></li>
+    {%else%}
+    <li><a href="{% url 'register'%}">{% trans 'Registracya' %}</a></li>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+    <li><a href="{% url 'password-change-view'%}">{% trans 'change password' %}</a></li>
+    {%else%}
+    <li><a href="{% url 'reset_password'%}">{% trans 'forget password' %}</a></li>
+    {% endif %}
+    <li>
+        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <select name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}
+                        selected{% endif %}>
+                    {{ language.name_local }} ({{ language.code }})
+                </option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Go">
+        </form>
+    </li>
+</ul>
+{% block content%}
+
+{% endblock content%}
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+    <p>Find me on social media.</p>
+    {%for i in socials%}
+    <a href="{{i.url}}" target="blank"><img style="width: 30px;" src="{{i.icon.url}}" alt=""><i class="{{i.icon.url}}"
+                                                                                                aria-hidden="true"></i></a>
+    {%endfor%}
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+</body>
+</html>
